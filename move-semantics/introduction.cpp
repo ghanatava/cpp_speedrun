@@ -26,7 +26,7 @@ class Resource {
 void someFunction() {
     Auto_ptr1<Resource> ptr(new Resource()); //pointer now owns the resource(the object)
     int x;
-    std::cout << "Enter an integer";
+    std::cout << "Enter an integer: ";
     std::cin >> x;
     if (x==0) return;
     ptr->sayHi();  //just like a method is called
@@ -35,6 +35,9 @@ void someFunction() {
 int main() {
     Auto_ptr1<Resource> res(new Resource()); //Memory allocated
     // ... but no explicit delete needed
+
+    //Auto_ptr1<Resource> res1(new Resource());
+    //Auto_ptr1<Resource> res2(res1); // Alternatively, don't initialize res2 and then assign res2 = res1; this will crash a double free()
 
     // Also note that we use <Resource>, not <Resource*>
     // This is because we've defined m_ptr to have type T* (not T)
