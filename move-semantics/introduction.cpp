@@ -20,7 +20,17 @@ class Resource {
     public:
         Resource(){ std::cout << "Resource acquired \n"; } //nullptr example
         ~Resource(){ std::cout << "Resource released \n"; }
+        void sayHi() { std::cout << "Hi\n"; }
 };
+
+void someFunction() {
+    Auto_ptr1<Resource> ptr(new Resource()); //pointer now owns the resource(the object)
+    int x;
+    std::cout << "Enter an integer";
+    std::cin >> x;
+    if (x==0) return;
+    ptr->sayHi();  //just like a method is called
+}
 
 int main() {
     Auto_ptr1<Resource> res(new Resource()); //Memory allocated
@@ -28,7 +38,7 @@ int main() {
 
     // Also note that we use <Resource>, not <Resource*>
     // This is because we've defined m_ptr to have type T* (not T)
-
+    someFunction();
     return 0;
 } // res goes out of scope here, and destroys the allocated Resource for us
 
